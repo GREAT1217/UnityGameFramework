@@ -28,7 +28,7 @@ namespace Game.Editor
         [MenuItem("Game/Generate DataTable Text File", false, 41)]
         private static void GenerateDataTableTextFile()
         {
-            ExcelHelper.BatchExcelToText(ExcelPath, AssetUtility.DataTablePath, CollectionFilePath);
+            ExcelUtility.BatchExcelToText(ExcelPath, AssetUtility.DataTablePath, CollectionFilePath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             Debug.Log("DataTable Text File Generated !");

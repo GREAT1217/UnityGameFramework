@@ -7,8 +7,9 @@ namespace Game.Editor
 {
     public class BuildInfoEditor : EditorWindow
     {
-        private string m_BuildInfoFilePath;
+        private string m_BuildInfoFilePath = "Assets/Game/Configs/Runtime/BuildInfo.txt";
         private BuildInfo m_BuildInfo;
+
         private string m_GameVersion;
         private int m_InternalGameVersion;
         private string m_CheckVersionUrl;
@@ -26,20 +27,18 @@ namespace Game.Editor
 
         private void OnEnable()
         {
-            m_BuildInfoFilePath = Application.dataPath + "Game/Configs/Runtime/BuildInfo.txt";
-            
             LoadBuildInfo();
         }
 
         private void OnGUI()
         {
-            m_GameVersion = EditorGUILayout.TextField("GameVersion:", m_GameVersion);
-            m_InternalGameVersion = EditorGUILayout.IntField("InternalGameVersion:", m_InternalGameVersion);
-            m_CheckVersionUrl = EditorGUILayout.TextField("CheckVersionUrl:", m_CheckVersionUrl);
-            m_WindowsAppUrl = EditorGUILayout.TextField("WindowsAppUrl:", m_WindowsAppUrl);
-            m_MacOSAppUrl = EditorGUILayout.TextField("MacOSAppUrl:", m_MacOSAppUrl);
-            m_IOSAppUrl = EditorGUILayout.TextField("IOSAppUrl:", m_IOSAppUrl);
-            m_AndroidAppUrl = EditorGUILayout.TextField("AndroidAppUrl:", m_AndroidAppUrl);
+            m_GameVersion = EditorGUILayout.TextField("GameVersion", m_GameVersion);
+            m_InternalGameVersion = EditorGUILayout.IntField("InternalGameVersion", m_InternalGameVersion);
+            m_CheckVersionUrl = EditorGUILayout.TextField("CheckVersionUrl", m_CheckVersionUrl);
+            m_WindowsAppUrl = EditorGUILayout.TextField("WindowsAppUrl", m_WindowsAppUrl);
+            m_MacOSAppUrl = EditorGUILayout.TextField("MacOSAppUrl", m_MacOSAppUrl);
+            m_IOSAppUrl = EditorGUILayout.TextField("IOSAppUrl", m_IOSAppUrl);
+            m_AndroidAppUrl = EditorGUILayout.TextField("AndroidAppUrl", m_AndroidAppUrl);
 
             if (GUILayout.Button("Generate"))
             {

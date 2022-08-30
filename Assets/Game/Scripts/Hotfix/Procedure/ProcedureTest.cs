@@ -10,6 +10,7 @@ namespace Game.Hotfix
         {
             base.OnEnter(procedureOwner);
 
+            Log.Info(GameEntry.Localization.GetString("CheckVersion.Tips"));
             Log.Info("Hello World!");
         }
     }

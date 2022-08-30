@@ -20,7 +20,7 @@ namespace Game.Editor
         [MenuItem("Game/Generate Config Text File", false, 21)]
         private static void GenerateConfigTextFile()
         {
-            ExcelHelper.BatchExcelToText(ConfigExcelPath, AssetUtility.ConfigPath, CollectionFilePath);
+            ExcelUtility.BatchExcelToText(ConfigExcelPath, AssetUtility.ConfigPath, CollectionFilePath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             Debug.Log("Config Text File Generated !");

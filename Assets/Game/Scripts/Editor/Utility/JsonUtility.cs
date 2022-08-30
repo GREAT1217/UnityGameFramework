@@ -3,11 +3,12 @@
 namespace Game.Editor
 {
     /// <summary>
-    /// 编辑器通用 Json 
+    /// 编辑器通用 Json 序列化工具。
+    /// Game.LitJsonHelper 用于运行时。
     /// </summary>
     public static class JsonUtility
     {
-        private static readonly JsonWriter JsonWriter = new JsonWriter { PrettyPrint = true };
+        private static readonly JsonWriter JsonWriter = new JsonWriter { PrettyPrint = true, Validate = true };
 
         /// <summary>
         /// 将对象序列化为 JSON 字符串。

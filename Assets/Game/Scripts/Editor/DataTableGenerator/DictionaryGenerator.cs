@@ -20,7 +20,7 @@ namespace Game.Editor
         [MenuItem("Game/Generate Dictionary Text File", false, 61)]
         private static void GenerateDictionaryTextFile()
         {
-            ExcelHelper.BatchExcelToText(ExcelPath, AssetUtility.DictionaryPath, CollectionFilePath);
+            ExcelUtility.BatchExcelToText(ExcelPath, AssetUtility.DictionaryPath, CollectionFilePath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             Debug.Log("Dictionary Text File Generated !");
