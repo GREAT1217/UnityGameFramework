@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export HUATUO_IL2CPP_SOURCE_DIR=$(pushd ../LocalIl2CppData/il2cpp > /dev/null && pwd && popd > /dev/null)
+export HUATUO_IL2CPP_SOURCE_DIR=$(pushd ../LocalIl2CppData-OSXEditor/il2cpp > /dev/null && pwd && popd > /dev/null)
 export IPHONESIMULATOR_VERSION=
 
 rm -rf build
@@ -8,7 +8,7 @@ rm -rf build
 mkdir build
 cd build
 cmake ..
-make -j4
+make -j24
 
 if [ -f "libil2cpp.a" ]
 then

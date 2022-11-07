@@ -3,6 +3,7 @@ using GameFramework;
 using GameFramework.Fsm;
 using GameFramework.Procedure;
 using GameFramework.Resource;
+using HybridCLR;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
@@ -15,13 +16,6 @@ namespace Game.Hotfix
             "mscorlib.dll",
             "System.dll",
             "System.Core.dll", // 如果使用了Linq，需要这个
-            "UnityGameFramework.Runtime.dll"
-            // "Newtonsoft.Json.dll",
-            // "protobuf-net.dll",
-            // "Google.Protobuf.dll",
-            // "MongoDB.Bson.dll",
-            // "DOTween.Modules.dll",
-            // "UniTask.dll",
         };
 
         private static int AOTFlag;
@@ -76,14 +70,10 @@ namespace Game.Hotfix
         {
             TextAsset dll = (TextAsset) asset;
             byte[] dllBytes = dll.bytes;
-            fixed (byte* ptr = dllBytes)
-            {
-                // 加载assembly对应的dll，会自动为它hook。一旦aot泛型函数的native函数不存在，用解释器版本代码
-                int err = HybridCLR.RuntimeApi.LoadMetadataForAOTAssembly((IntPtr) ptr, dllBytes.Length);
-                Log.Info(string.Format("LoadMetadataForAOTAssembly:{0}. ret:{1}", assetName, err));
-            }
-            AOTLoadFlag++;
-            if (AOTLoadFlag == AOTFlag)
+            // 加载assembly对应的dll，会自动为它hook。一旦aot泛型函数的native函数不存在，用解释器版本代码
+            var err = RuntimeApi.LoadMetadataForAOTAssembly(dllBytes, HomologousImageMode.SuperSet);
+            Log.Info($"LoadMetadataForAOTAssembly:{assetName}. ret:{err}");
+            if (++AOTLoadFlag == AOTFlag)
             {
                 StartHotfix();
             }
